@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package genproto;
+option go_package="genproto/auth_service";
+
+import "auth.proto";
+
+message PlatformResponse {
+    Platform platform = 1;
+}
+
+message PlatformsResponse {
+    repeated Platform platforms = 1;
+    int32 count = 2; 
+}

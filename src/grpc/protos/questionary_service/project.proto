@@ -1,0 +1,138 @@
+syntax = "proto3";
+
+package questionary_service;
+option go_package="genproto/questionary_service";
+
+import "common.proto";
+
+service ProjectService {
+    rpc Create (CreateProjectRequest) returns (CreateResponse) {}
+    rpc GetByManager (GetProjectsByManagerRequest) returns (GetProjectsByManagerResponse) {}
+    rpc GetProjectWithSurvey (GetProjectWithSurveyRequest) returns (GetProjectWithSurveyResponse) {}
+    rpc GetAllCategories (GetCategoriesRequest) returns (GetCategoriesResponse) {}
+    rpc CreateQuota (CreateQuotaRequest) returns (QuotaID) {}
+    rpc GetBySurvey (QuotaID) returns (Quota) {}
+    rpc UpdateQuota (Quota) returns (QuotaID) {}
+    rpc DeleteQuota (QuotaID) returns (QuotaID) {}
+    rpc GetFirsQuestion(Str) returns (Payloads) {} 
+    rpc UpdateLeftPlaces(QuotaID) returns (QuotaID) {}
+}
+
+message Data {
+    bytes data = 1;
+}
+
+message Payloads {
+    string topic = 1;
+    string data = 2;
+}
+
+message Str {
+    string data = 1;
+}
+// create
+message CreateProjectRequest {
+    bool auto_next = 1;
+    string available_from = 2;
+    string available_until = 3;
+    CreatePicture image = 4;
+    bool is_active = 5;
+    repeated ProjectLanguage languages = 6;
+    bool multiple_answers = 7;
+    bool record_answers = 8;
+    bool return_answers = 9;
+}
+
+message GetProjectsByManagerRequest {
+    string id = 1;
+}
+
+message GetProjectsByManagerResponse {
+    string id = 1;
+    string title = 2;
+    string image = 3;
+    bool status = 4;
+    int32 finished_response_count = 5;
+}
+
+
+message CreateQuotaRequest {
+    int32 places = 1;
+    string status = 2;
+    string survey_id = 3;
+    repeated CreateQuotaQuestions questions = 4;
+}
+
+message QuotaID {
+    string id = 1;
+}
+
+message CreateQuotaQuestions {
+    string question_id = 1;
+    string key = 2;
+    string value = 3;
+}
+
+message QuotaQuestion {
+    string id = 1;
+    string question_id = 2;
+    string key = 3;
+    string value = 4;
+}
+
+message Quota {    
+    string id = 1;
+    int32 places = 2;
+    string status = 3;
+    string survey_id = 4;
+    repeated QuotaQuestion questions = 5;
+}
+
+message GetProjectWithSurveyRequest {
+    string survey_id = 1;
+}
+
+message GetProjectWithSurveyResponse {
+    Project project = 1;
+    Survey survey = 2;
+}
+
+message Project {
+    string id = 1;
+    string user_id = 2;
+    int32 score = 3;
+    bool is_active = 4;
+    bool multiple_answers = 5;
+    int32 available_from = 6;
+    int32 available_until = 7;
+    string category = 8;
+}
+
+message Survey {
+    string id = 1;
+    string user_id = 2;
+    string project_id = 3;
+    string title = 4;
+}
+
+message GetCategoriesRequest {
+    string user_id = 1;
+}
+
+message GetCategoriesResponse {
+   repeated Category categories = 1;
+}
+
+message Category {
+    string id = 1;
+    Title title = 2;
+    bool is_active = 4;
+}
+
+message Title {
+    string uz = 1;
+    string ru = 2;
+    string kg = 3;
+    string kz = 4;
+    string tj = 5;
+}

@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package user_service;
+option go_package="genproto/user_service";
+
+import "google/protobuf/empty.proto";
+import "user.proto";
+
+service SystemUserService {
+    rpc Create(SystemUser) returns (SystemUserResponse) {}
+    rpc Get(GetRequest) returns (SystemUserResponse) {}
+    rpc Find(FindRequest) returns (SystemUsersResponse) {}
+    rpc Update(SystemUser) returns (SystemUserResponse) {}
+    rpc ResetPassword(PasswordResetSystemUserRequest) returns (google.protobuf.Empty) {}
+    rpc Delete(DeleteRequest) returns (google.protobuf.Empty) {}
+    rpc GetByCredentials(GetByCredentialsRequest) returns (SystemUserResponse) {}
+    rpc GetSlim(GetRequest) returns (SystemUserSlimResponse) {}
+    rpc GetByLogin(GetByLoginSystemUserRequest) returns (SystemUserResponse) {}
+    rpc GetByEmail(GetByEmailSystemUserRequest) returns (SystemUserResponse) {}
+    rpc AssignProjectToManager(AssignProject) returns (AssignProjectResponce) {}
+    rpc GetManagerProjects(GetRequest) returns (AssignedProjects) {}
+}
+
+message AssignProject{
+    string id=1;
+    string system_user_id=2;
+    string project_id=3;
+    string created_at=4;
+    string  updated_at=5;
+}
+
+message AssignProjectResponce{
+    AssignProject assignProject = 1;
+}
+
+message AssignedProjects{
+    repeated AssignProject assignedProjets=1;
+    int32 count=2;
+}
+
+message SystemUserResponse {
+    SystemUser system_user = 1;
+}
+
+message SystemUserSlimResponse {
+    SystemUserSlim system_user = 1;
+}
+
+message SystemUsersResponse {
+    repeated SystemUser system_users = 1;
+    int32 count = 2;
+}
+
+message GetByLoginSystemUserRequest {
+    string login = 1;
+}
+
+message GetByEmailSystemUserRequest {
+    string email = 1;
+}

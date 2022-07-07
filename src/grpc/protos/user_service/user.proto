@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+package user_service;
+option go_package="genproto/user_service";
+
+message File {
+    string uuid = 1;
+    string url = 2;
+}
+
+message SuperUser {
+    string id = 1;
+    string login = 2;
+    string password = 3;
+
+    string user_role_id = 4;
+
+    string name = 5;
+    File image = 6;
+
+    bool   active = 10;
+    string created_at = 11;
+    string updated_at = 12;
+}
+
+message SystemUser {
+    string id = 1;
+    string login = 2;
+    string password = 3;
+
+    string user_role_id = 4;
+
+    string name = 5;
+    File image = 6;
+
+    bool   active = 10;
+    string created_at = 11;
+    string updated_at = 12;
+
+    string email = 13;
+    string company_name = 14;
+    string company_position = 15;
+}
+
+message SystemUserSlim {
+    string id = 1;
+    string name = 2;
+    File image = 3;
+}
+
+message UpdateLoginRequest {
+    string id = 1;
+    string login = 2;
+    string password = 3;
+}
+
+message PasswordResetSystemUserRequest {
+    string id = 1;
+    string password = 2;
+}
+
+message Customer {
+    string id = 1;
+    string firstname = 2;
+    string lastname = 3;
+    string phone = 4;
+    File image = 5;
+    string email = 6;
+    string password = 7;
+    
+    double balance = 8;
+    string country = 9;
+    string region = 10;
+    string city = 11;
+    string dob = 12;
+    string gender = 13;
+    string language = 14;
+
+    bool   active = 15;
+    string created_at = 16;
+    string updated_at = 17;
+    string login_at = 18;
+    string operator_id = 19;
+    bool is_operator = 20;
+    string login = 21;
+    string username = 22;
+    string fsm_token = 23;
+}
+
+message GetRequest {
+    string id = 1;
+}
+
+message FindRequest {
+    int32  offset = 1;
+    int32  limit = 2;
+    string search = 3;
+    bool   active = 4;
+    bool   inactive = 5;
+    string phone = 6;
+}
+
+message DeleteRequest {
+    string id = 1;
+}
+
+message GetByCredentialsRequest {
+    string login = 1;
+    string password = 2;
+}
+
+message GetByLoginRequest {
+    string login = 1;
+}
+
+message GetByPhoneRequest {
+    string phone = 1;
+}
+
+message GetByEmailRequest {
+    string email = 1;
+}

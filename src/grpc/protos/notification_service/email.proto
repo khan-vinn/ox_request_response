@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package notification_service;
+
+option go_package = "genproto/notification_service";
+
+message Email {
+    string id = 1;
+    string email = 2;
+    string message = 3;
+    int32 priority = 4;
+    string created_at = 5;
+    string updated_at = 6;
+    string sent_at = 7;
+    string status_id = 8;
+    int32 n_of_tries = 9;
+}
+
+message EmailUpdateRequest {
+	string id = 1;
+	string email = 2;
+	string message = 3;
+	string status_id = 4;
+	int32 n_of_tries = 5;
+}
+
+message EmailStatus {
+    string id = 1;
+    string name = 2;
+}
+
+// Request Start
+
+message EmailBatch {
+    string message = 1;
+    repeated string recepients = 2;
+    int32 priority = 3;
+}
+
+message EmailNotSentRequest {
+    int32  offset = 1;
+    int32  limit = 2;
+    string  status_id = 3;
+}
+
+// Responses Start
+
+message CreateEmailBatchResponse {
+    int32 total = 1;
+    int32 success = 2;
+}
+
+message EmailsResponse {
+    repeated Email emails = 1;
+    int32 count = 2;
+}
+
+message EmailResponse {
+    Email email = 1;
+}

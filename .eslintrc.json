@@ -1,0 +1,77 @@
+// {
+//   "parser": "@typescript-eslint/parser",
+//   "extends": [
+//     "airbnb-base",
+//     "plugin:@typescript-eslint/recommended",
+//     "prettier"
+//   ],
+//   "plugins": ["prettier", "@typescript-eslint"],
+//   "rules": {
+//     "strict": [2, "never"],
+//     "no-multi-spaces": 0,
+//     "spaced-comment": 0,
+//     "no-multi-assign": 0,
+//     "no-plusplus": "off",
+//     //Import rules
+//     "import/extensions": [
+//       0,
+//       "ignorePackages",
+//       {
+//         "js": "never",
+//         "ts": "never"
+//       }
+//     ],
+//     "no-restricted-syntax": "off",
+//     "class-methods-use-this": "off",
+//     "import/no-unresolved": 0,
+//     "import/no-extraneous-dependencies": 0,
+//     "import/no-named-as-default-member": 0,
+//     "import/prefer-default-export": 0,
+//     "object-curly-spacing": 0,
+//     "indent": 0,
+//     "@typescript-eslint/indent": 0,
+//     "@typescript-eslint/explicit-member-accessibility": 0,
+//     "@typescript-eslint/camelcase": 0,
+//     "import/no-webpack-loader-syntax": 0,
+//     "@typescript-eslint/prefer-interface": 0,
+//     "import/no-cycle": 1,
+//     "react/prop-types": 0,
+//     "@typescript-eslint/explicit-function-return-type": [
+//       1,
+//       {
+//         "allowTypedFunctionExpressions": true
+//       }
+//     ],
+//     "@typescript-eslint/no-this-alias": 0,
+
+//     "no-console": "off",
+//     "comma-dangle": [
+//       "error",
+//       {
+//         "arrays": "never",
+//         "objects": "never",
+//         "imports": "never",
+//         "exports": "never",
+//         "functions": "ignore"
+//       }
+//     ],
+//     "prefer-destructuring": [
+//       "error",
+//       {
+//         "array": true,
+//         "object": false
+//       },
+//       {
+//         "enforceForRenamedProperties": false
+//       }
+//     ],
+//     "max-len": [
+//       "error",
+//       {
+//         "ignoreComments": true,
+//         "code": 150
+//       }
+//     ]
+//   },
+//   "globals": {}
+// }

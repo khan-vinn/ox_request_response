@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package notification_service;
+
+option go_package = "genproto/notification_service";
+
+import "sms.proto";
+import "email.proto";
+
+// Services
+
+service SmsService {
+    rpc Create(SmsBatch) returns (CreateSmsBatchResponse) {}
+    rpc Get(Request) returns (SmsResponse) {}
+    rpc GetSmsByStatusId(SmsNotSentRequest) returns (SmssResponse){}
+    rpc Find(FindRequest) returns (SmssResponse) {}
+    rpc Update(SmsUpdateRequest) returns (SmsResponse) {}
+    rpc Delete(Request) returns (Empty) {}
+}
+
+service EmailService {
+    rpc Create(EmailBatch) returns (CreateEmailBatchResponse) {}
+    rpc Get(Request) returns (EmailResponse) {}
+    rpc GetEmailByStatusId(EmailNotSentRequest) returns (EmailsResponse){}
+    rpc Find(FindRequest) returns (EmailsResponse) {}
+    rpc Update(EmailUpdateRequest) returns (EmailResponse) {}
+    rpc Delete(Request) returns (Empty) {}
+}

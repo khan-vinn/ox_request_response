@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package notification_service;
+
+option go_package = "genproto/notification_service";
+
+message Sms {
+    string id = 1;
+    string phone = 2;
+    string message = 3;
+    int32 priority = 4;
+    string created_at = 5;
+    string updated_at = 6;
+    string sent_at = 7;
+    string status_id = 8;
+    int32 n_of_tries = 9;
+}
+
+message SmsUpdateRequest {
+	string id = 1;
+	string phone = 2;
+	string message = 3;
+	string status_id = 4;
+	int32 n_of_tries = 5;
+}
+
+message SmsStatus {
+    string id = 1;
+    string name = 2;
+}
+
+// Request Start
+
+message SmsBatch {
+    string message = 1;
+    repeated string recepients = 2;
+    int32 priority = 3;
+}
+
+message SmsNotSentRequest {
+    int32  offset = 1;
+    int32  limit = 2;
+    string  status_id = 3;
+}
+
+message Request {
+    string id = 1;
+}
+
+message FindRequest {
+    int32  offset = 1;
+    int32  limit = 2;
+    string search = 3;
+    string sort = 4;
+}
+
+// Responses Start
+
+message CreateSmsBatchResponse {
+    int32 total = 1;
+    int32 success = 2;
+}
+
+message SmssResponse {
+    repeated Sms smss = 1;
+    int32 count = 2;
+}
+
+message SmsResponse {
+    Sms sms = 1;
+}
+
+message Empty {
+}

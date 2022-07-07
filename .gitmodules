@@ -1,0 +1,6 @@
+[submodule "src/grpc/protos/ox_protos"]
+	path = src/grpc/protos/ox_protos
+	url = git@gitlab.udevs.io:oxbox/ox_protos.git
+[submodule "ox_protos"]
+	path = ox_protos
+	url = git@gitlab.udevs.io:oxbox/ox_protos.git

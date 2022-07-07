@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package genproto;
+option go_package="genproto/auth_service";
+
+import "auth.proto";
+import "google/protobuf/empty.proto";
+
+service UserRoleService {
+    rpc Create(UserRole) returns (UserRoleResponse) {}
+    rpc Get(GetRequest) returns (UserRoleResponse) {}
+    rpc Find(FindUserRoleRequest) returns (UserRolesResponse) {}
+    rpc Update(UserRole) returns (UserRoleResponse) {}
+    rpc Delete(DeleteRequest) returns (google.protobuf.Empty) {}
+}
+
+message FindUserRoleRequest {
+    string client_id = 1;
+}
+
+message UserRoleResponse {
+    UserRole user_role = 1;
+}
+
+message UserRolesResponse {
+    repeated UserRole user_roles = 1;
+    int32 count = 2;
+}

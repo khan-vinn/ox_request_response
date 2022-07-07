@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package notification_service;
+option go_package = "genproto/notification_service";
+
+// Services
+service TelegramService {
+    rpc SendToChannel(SendToChannelRequest) returns (SendToChannelResponse) {}
+}
+
+message SendToChannelRequest {
+    string text = 1;
+}
+
+message SendToChannelResponse {
+    int32 status_code = 1;
+}

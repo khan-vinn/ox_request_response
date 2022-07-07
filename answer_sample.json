@@ -1,0 +1,44 @@
+{
+    "survey_id": "uuid",
+    "user_id": "uuid",
+    "questions": [
+        {
+            "id": "uuid",
+            "number": "Q1",
+            "label": "English",
+
+            "description": {
+                "uz": "O'zbekcha",
+                "ru": "Русский",
+                "en": "English"
+            },
+            "answers": [
+                {
+                    "id": "uuid",
+                    "order": 1,
+                    "label": "English",
+                    "columns": [
+                        {
+                            "id": "uuid",
+                            "order": 1,
+                            "label": "string"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "type": "info|radio|checkbox|text|number|date|matrix-single|matrix-multiple|matrix-text",
+    "answer": {
+        "text": "eleven",
+        "answer": "uuid",
+        "answers": ["uuid"],
+        "column": "uuid",
+        "columns": ["uuid"],
+        "texts": "elevens"
+    },
+    "status": "completed",
+
+    "started_at": "string",
+    "finished_at": "string"
+}

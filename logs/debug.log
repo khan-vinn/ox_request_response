@@ -1,0 +1,42 @@
+{
+  message: 'DATABASE URL: mongodb://question_response:NC9Zr3jC8U@89.46.34.187:27017/question_response',
+  level: 'info',
+  timestamp: '2022-06-29T03:08:05.006Z',
+  label: 'question-response-service',
+  metadata: {}
+}
+{
+  message: 'Database connection initialized.',
+  level: 'info',
+  timestamp: '2022-06-29T03:08:05.043Z',
+  label: 'question-response-service',
+  metadata: {}
+}
+{
+  message: 'App is running on port 80.',
+  level: 'info',
+  timestamp: '2022-06-29T03:08:05.044Z',
+  label: 'question-response-service',
+  metadata: {}
+}
+{
+  message: 'GRPC server running on 0.0.0.0:8080',
+  level: 'info',
+  timestamp: '2022-06-29T03:08:05.050Z',
+  label: 'question-response-service',
+  metadata: {}
+}
+{
+  message: 'GRPC server running on 0.0.0.0:8080',
+  level: 'info',
+  timestamp: '2022-06-29T03:08:05.050Z',
+  label: 'question-response-service',
+  metadata: {}
+}
+{
+  message: 'mongo db connection established',
+  level: 'info',
+  timestamp: '2022-06-29T03:08:05.792Z',
+  label: 'question-response-service',
+  metadata: {}
+}

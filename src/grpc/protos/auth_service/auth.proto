@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package genproto;
+option go_package="genproto/auth_service";
+
+message Platform {
+    string id = 1;
+    string name = 2;
+}
+
+message UserType {
+    string id = 1;
+    string name = 2;
+}
+
+message Client {
+    string id = 1;
+    string platform_id = 2;
+    string user_type_id = 3;
+}
+
+message Scope {
+    string id = 1;
+    string method = 2;
+    string url = 3;
+    int64 visits_count = 4;
+}
+
+message UserTypeScope {
+    string user_type_id = 1;
+    string scope_id = 2;
+}
+
+message Token {
+    string id = 1;
+    string client_id = 2;
+    string user_id = 3;
+    string user_role_id = 4;
+    string access_token = 5;
+    string refresh_token = 6;
+    string ip = 7;
+    string device = 8;
+    string created_at = 9;
+    string updated_at = 10;
+}
+
+message TokensResponse {
+    repeated Token tokens = 1;
+    int32 count = 2;
+}
+
+message UserRole {
+    string id = 1;
+    string user_type_id = 2;
+    string name = 3;
+}
+
+message Permission {
+    string id = 1;
+    string user_type_id = 2;
+    string name = 3;
+}
+
+message UserRolePermission {
+    string id = 1;
+    string user_role_id = 2;
+    string permission_id = 3;
+    string permission_name = 4;
+    map<string, bool> actions = 5;
+}
+
+message GetRequest {
+    string id = 1;
+}
+
+message FindRequest {
+    int32  offset = 1;
+    int32  limit = 2;
+}
+
+message DeleteRequest {
+    string id = 1;
+}

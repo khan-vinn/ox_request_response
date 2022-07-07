@@ -1,0 +1,172 @@
+syntax = "proto3";
+
+package genproto;
+option go_package="genproto/auth_service";
+import "google/protobuf/empty.proto";
+import "auth.proto";
+
+service AuthService {
+    rpc LoginSuperUser(LoginRequest) returns (LoginResponse) {}
+    rpc LoginSystemUser(LoginRequest) returns (LoginResponse) {}
+    rpc LoginCustomer(LoginRequest) returns (LoginResponse) {}
+    rpc LoginOperator(LoginRequest) returns (LoginResponse) {}
+
+    rpc GenerateCustomerOTP(GenerateOTPRequest) returns (CustomerOTPResponse) {}
+    rpc RegisterCustomerWithOTP(RegisterCustomerWithOTPRequest) returns (LoginCustomerResponse) {}
+    rpc ConfirmCustomerOTP(ConfirmOTPRequest) returns (LoginCustomerResponse) {}
+
+    rpc GenerateCustomerEmailOTP(GenerateEmailOTPRequest) returns (CustomerOTPResponse) {}
+    rpc RegisterCustomerWithEmailOTP(RegisterCustomerWithEmailOTPRequest) returns (LoginCustomerResponse) {}
+    rpc ConfirmCustomerPasswordReset(ConfirmCustomerPasswordResetRequest) returns (LoginCustomerResponse) {}
+
+    rpc SendUpdatePasswordUrlToEmail(SendUrlReq) returns (google.protobuf.Empty) {}
+    rpc UpdateUserPasswordByEmail(UpdateUserPasswordByEmailRequest) returns (google.protobuf.Empty) {}
+
+    rpc RefreshToken(RefreshTokenRequest) returns (LoginResponse) {}
+
+    rpc HasAccess(HasAccessRequest) returns (HasAccessResponse) {}
+
+    rpc Logout(LogoutRequest) returns (LogoutResponse) {}
+}
+
+message UpdateUserPasswordByEmailRequest{
+    string token = 1;
+    string password = 2;
+}
+
+message LogoutRequest {
+    string token_id = 1;
+}
+
+message LogoutResponse {}
+
+
+message SendUrlReq {
+    string email = 1;
+    string base_url = 2;
+}
+
+
+message LoginRequest {
+    string client_id = 1;
+    string login = 2;
+    string password = 3;
+}
+
+message LoginResponse {
+    Token token = 1;
+    string user_info = 2;
+}
+
+message LoginCustomerResponse {
+    Token token = 1;
+    Customer customer = 2;
+    TokensResponse user_tokens = 3;
+}
+
+message GenerateOTPRequest {
+    string client_id = 1;
+    string phone = 2;
+}
+
+message GenerateEmailOTPRequest {
+    string client_id = 1;
+    string email = 2;
+}
+
+message RegisterCustomerWithOTPRequest {
+    string client_id = 1;
+    string secret = 2;
+    string code = 3;
+    string ip = 4;
+    string device = 5;
+    string phone = 6;
+
+    string country = 7;
+    string region = 8;
+    string city = 9;
+    string token = 10;
+}
+
+message RegisterCustomerWithEmailOTPRequest {
+    string client_id = 1;
+    string secret = 2;
+    string code = 3;
+    string ip = 4;
+    string device = 5;
+    string email = 6;
+
+    string country = 7;
+    string region = 8;
+    string city = 9;
+    string token = 10;
+}
+
+message File {
+    string uuid = 1;
+    string url = 2;
+}
+
+message Customer {
+    string id = 1;
+    string firstname = 2;
+    string lastname = 3;
+    string phone = 4;
+    string email = 5;
+    string gender = 6;
+    string dob = 7;
+    File image = 8;
+
+    string country = 9;
+    string region = 10;
+    string city = 11;
+
+    bool   active = 12;
+    string created_at = 13;
+    string updated_at = 14;
+}
+
+message CustomerOTPResponse {
+    string secret = 1;
+    Customer customer = 2;
+    bool user_found = 3;
+    TokensResponse user_tokens = 4;
+}
+
+message ConfirmOTPRequest {
+    string client_id = 1;
+    string secret = 2;
+    string phone = 3;
+    string code = 4;
+    string ip = 5;
+    string device = 6;
+    string fsm_token = 7;
+}
+
+message ConfirmCustomerPasswordResetRequest {
+    string client_id = 1;
+    string secret = 2;
+    string email = 3;
+    string code = 4;
+    string ip = 5;
+    string device = 6;
+}
+
+message RefreshTokenRequest {
+    string client_id = 1;
+    string refresh_token = 2;
+}
+
+message HasAccessRequest {
+    string client_id = 1;
+    string method = 2;
+    string url = 3;
+    string access_token = 4;
+}
+
+message HasAccessResponse {
+    bool has_access = 1;
+    string user_id = 2;
+    string client_id = 3;
+    string user_role_id = 4;
+}

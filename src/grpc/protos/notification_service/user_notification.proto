@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package notification_service;
+
+option go_package = "genproto/notification_service";
+
+message UserNotification {
+    string id = 1;
+    string user_id  = 2;
+    string notification_id  = 3;
+    string topic  = 4;
+    string description = 5;
+    string text  = 6;
+    string link  = 7;
+    string status  = 8;
+    string created_at = 9;
+    string sender_id  = 10;
+    string client_id  = 11;
+    GetSystemUserSlim sender = 12;
+}
+
+message UserNotificationsResponse {
+    repeated UserNotification user_notifications = 1;
+    int32 count = 2;
+}
+
+message CreateUserNotificationBatchRequest {
+    repeated string recepients = 1;
+    
+    string notification_id  = 2;
+    string topic  = 3;
+    string description = 4;
+    string text  = 5;
+    string link  = 6;
+    string sender_id  = 7;
+    string client_id  = 8;
+}
+
+message CreateUserNotificationBatchResponse {
+    int32 total = 1;
+    int32 success = 2;
+}
+message GetSystemUserSlim {
+    string id = 1;
+    string name = 2;
+    File image = 3;
+}
+
+message File {
+    string uuid = 1;
+    string url = 2;
+}
+message GetByIDRequest {
+    int32 offset = 1;
+    int32 limit = 2;
+    string id = 3;
+}
+
+message ChangeUserNotificationStatusRequest {
+    string user_id = 1;
+    string id = 2;
+    string status = 3;
+}

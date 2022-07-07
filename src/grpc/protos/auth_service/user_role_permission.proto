@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package genproto;
+option go_package="genproto/auth_service";
+
+import "auth.proto";
+import "google/protobuf/empty.proto";
+
+service UserRolePermissionService {
+    rpc Create(UserRolePermission) returns (UserRolePermissionResponse) {}
+    rpc Get(GetUserRolePermissionRequest) returns (UserRolePermissionResponse) {}
+    rpc Find(FindUserRolePermissionRequest) returns (UserRolePermissionsResponse) {}
+    rpc Update(UserRolePermission) returns (UserRolePermissionResponse) {}
+    rpc Delete(DeleteUserRolePermissionRequest) returns (google.protobuf.Empty) {}
+}
+
+message GetUserRolePermissionRequest {
+    string id = 1;
+    string user_role_id = 2;
+}
+
+message DeleteUserRolePermissionRequest {
+    string id = 1;
+    string user_role_id = 2;
+}
+
+message FindUserRolePermissionRequest {
+    string user_role_id = 1;
+}
+
+message UserRolePermissionResponse {
+    UserRolePermission user_role_permission = 1;
+}
+
+message UserRolePermissionsResponse {
+    repeated UserRolePermission user_role_permissions = 1;
+    int32 count = 2;
+}

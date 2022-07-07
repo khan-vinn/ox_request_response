@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package genproto;
+option go_package="genproto/auth_service";
+
+import "auth.proto";
+
+message UserTypeResponse {
+    UserType user_type = 1;
+}
+
+message UserTypesResponse {
+    repeated UserType user_types = 1;
+    int32 count = 2; 
+}

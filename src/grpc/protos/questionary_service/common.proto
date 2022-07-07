@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package questionary_service;
+option go_package="genproto/questionary_service";
+
+message CreatePicture {
+    string uuid = 1;
+}
+
+message ProjectLanguage {
+    bool is_active = 1;
+    string language = 2;
+}
+
+message CreateResponse {
+    string id = 1;
+}

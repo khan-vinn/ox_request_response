@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package question_response_service;
+
+import "google/protobuf/struct.proto";
+
+service Surveys {
+    rpc GetSurveys(GetSurveysRequest) returns (GetSurveysResponse) {}
+}
+
+
+message GetSurveysRequest {
+    string user_id = 1;
+}
+
+
+message GetSurveysResponse {
+    repeated UncompletedSurveys uncompleted_surveys = 1;
+    repeated NewSurveys new_surveys = 2;
+    repeated FullQuotaSurveys fullquota_surveys = 3;
+
+}
+
+message FullQuotaSurveys {
+    string id = 1;
+}
+
+message UncompletedSurveys {
+    string id = 1;
+}
+
+message NewSurveys {
+    string id = 1;
+}

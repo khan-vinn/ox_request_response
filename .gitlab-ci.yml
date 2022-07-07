@@ -1,0 +1,37 @@
+services:
+  - name: gitlab.udevs.io:5050/docker/docker:dind
+    alias: docker
+
+before_script:
+  ## ssh
+  - docker login $CI_REGISTRY --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD
+  ## install dependencies
+  - apk update && apk --no-cache --update add build-base openssh curl
+
+
+stages:
+  - build
+  - deploy
+
+build_image:
+  stage: build
+  script:
+    - make build-image TAG=$CI_PIPELINE_IID
+    - make push-image TAG=$CI_PIPELINE_IID
+  only:
+    - master
+
+deploy_to_prod:
+  stage: deploy
+  before_script:
+    - apk update && apk add --update --no-cache openssh sshpass build-base
+    - eval $(ssh-agent -s)
+    - echo "$GITLAB_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+  script:
+    - ssh -o StrictHostKeyChecking=no $OXBOX_PROD_USER@$OXBOX_PROD_HOST 'docker service update --with-registry-auth --image '$CI_REGISTRY'/'$CI_PROJECT_NAMESPACE'/'$CI_PROJECT_NAME':'$CI_PIPELINE_IID' '$CI_PROJECT_NAME ''
+  only: 
+    - master
+
+

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package genproto;
+option go_package="genproto/auth_service";
+
+import "auth.proto";
+
+service ScopeService {
+    rpc AddUp(Scope) returns (ScopeResponse) {}
+}
+
+message ScopeResponse {
+    Scope scope = 1;
+}
+
+message ScopesResponse {
+    repeated Scope scopes = 1;
+    int32 count = 2; 
+}
+
+
+

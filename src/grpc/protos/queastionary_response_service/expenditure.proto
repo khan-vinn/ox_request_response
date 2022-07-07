@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package question_response_service;
+option go_package="genproto/questionary_response_service";
+
+service Expenditure{
+    rpc AddExpenditure (AddExpenditureRequest) returns (AddExpenditureResponse);
+    rpc GetExpenditure (GetExpenditureRequest) returns (GetExpenditureResponse);
+    rpc GetQuestionFirst(Str) returns (Str);
+    rpc ListByUsers(ListByUsersReq) returns (Str);
+    rpc PrintHello(Str) returns (Str);
+}
+
+message ListByUsersReq{
+    string user_id = 1;
+    string survey_id = 2;
+}
+
+message Str {
+    string data = 1;
+}
+// 
+message Data {
+    bytes data = 1;
+}
+
+message AddExpenditureRequest {
+    string user_id = 1;
+    double score = 2;
+    string title = 3;
+    string type = 4;
+    string receiver = 5;
+}
+
+message AddExpenditureResponse {
+    string status = 1;
+    string id = 2;
+}
+
+message GetExpenditureRequest {
+    string user_id = 1;
+}
+
+message GetExpenditureResponse {
+    repeated AllExpenditure expenditure = 1;
+    int64 summExpenditure = 2;
+}
+
+message AllExpenditure {
+    string user_id = 1;
+    double score = 2;
+    string title = 3;
+    bool expend = 4;
+    int64 created_at = 5;
+}
+

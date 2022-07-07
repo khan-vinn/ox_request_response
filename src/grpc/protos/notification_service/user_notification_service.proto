@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package notification_service;
+
+option go_package = "genproto/notification_service";
+
+import "google/protobuf/empty.proto";
+import "user_notification.proto";
+
+// Services
+service UserNotificationService {
+    rpc Create(CreateUserNotificationBatchRequest) returns (CreateUserNotificationBatchResponse) {}
+    rpc UpdateStatusByUserId(ChangeUserNotificationStatusRequest) returns (google.protobuf.Empty) {}
+    rpc UpdateStatusById(ChangeUserNotificationStatusRequest) returns (google.protobuf.Empty) {}
+    rpc GetByUserID(GetByIDRequest) returns (UserNotificationsResponse) {}
+    rpc GetBySenderID(GetByIDRequest) returns (UserNotificationsResponse) {}
+    rpc Delete(UserNotification) returns (google.protobuf.Empty) {}
+}

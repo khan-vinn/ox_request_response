@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package user_service;
+option go_package="genproto/user_service";
+
+import "google/protobuf/empty.proto";
+import "user.proto";
+
+service CustomerService {
+    rpc Create(Customer) returns (CustomerResponse) {}
+    rpc CreateOperator(Customer) returns (CustomerResponse) {}
+    rpc CreateWithPhone(Customer) returns (CustomerResponse) {}
+    rpc CreateWithEmail(Customer) returns (CustomerResponse) {}
+    rpc Get(GetRequest) returns (CustomerResponse) {}
+    rpc Find(FindRequest) returns (CustomersResponse) {}
+    rpc FindOperator(FindRequest) returns (CustomersResponse) {}
+    rpc Update(Customer) returns (CustomerResponse) {}
+    rpc UpdateOperator(Customer) returns (CustomerResponse) {}
+    rpc UpdatePassword(Customer) returns (CustomerResponse) {}
+    rpc UpdatePhone(Customer) returns (CustomerResponse) {}
+    rpc Delete(DeleteRequest) returns (google.protobuf.Empty) {}
+    rpc GetByPhone(GetByPhoneRequest) returns (CustomerResponse) {}
+    rpc GetByEmail(GetByEmailRequest) returns (CustomerResponse) {}
+    rpc GetInactiveCustomers(GetInactiveCustomersRequest) returns (CustomersResponse) {}
+    rpc UpdateLoginAt(GetRequest) returns (google.protobuf.Empty) {}
+    rpc GetByCredentials(GetByCredentialsRequest) returns (CustomerResponse) {}
+    rpc GetOperatorByCredentials(GetByCredentialsRequest) returns (CustomerResponse) {}
+    rpc AddBalance(AddBalanceRequest) returns (AddBalanceResponse) {}
+}
+message GetInactiveCustomersRequest {
+    repeated string customer_ids = 1;
+    int32  offset = 2;
+    int32  limit = 3;
+}
+
+message CustomerResponse {
+    Customer customer = 1;
+}
+
+message CustomersResponse {
+    repeated Customer customers = 1;
+    int32 count = 2;
+    double all = 3;
+}
+
+// balance
+message AddBalanceRequest {
+    string user_id = 1;
+    double amount = 2;
+}
+
+message AddBalanceResponse {
+    string user_id = 1;
+}

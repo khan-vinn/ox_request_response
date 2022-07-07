@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package genproto;
+option go_package="genproto/auth_service";
+
+import "auth.proto";
+import "google/protobuf/empty.proto";
+
+service PermissionService {
+    rpc Create(Permission) returns (PermissionResponse) {}
+    rpc Get(GetRequest) returns (PermissionResponse) {}
+    rpc Find(FindPermissionRequest) returns (PermissionsResponse) {}
+    rpc Update(Permission) returns (PermissionResponse) {}
+    rpc Delete(DeleteRequest) returns (google.protobuf.Empty) {}
+}
+
+message FindPermissionRequest {
+    string client_id = 1;
+}
+
+message PermissionResponse {
+    Permission permission = 1;
+}
+
+message PermissionsResponse {
+    repeated Permission permissions = 1;
+    int32 count = 2;
+}

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package user_service;
+option go_package="genproto/user_service";
+
+import "google/protobuf/empty.proto";
+import "user.proto";
+
+service SuperUserService {
+    rpc Create(SuperUser) returns (SuperUserResponse) {}
+    rpc Get(GetRequest) returns (SuperUserResponse) {}
+    rpc Find(FindRequest) returns (SuperUsersResponse) {}
+    rpc Update(SuperUser) returns (SuperUserResponse) {}
+    rpc Delete(DeleteRequest) returns (google.protobuf.Empty) {}
+    rpc GetByCredentials(GetByCredentialsRequest) returns (SuperUserResponse) {}
+
+}
+
+
+
+message SuperUserResponse {
+    SuperUser super_user = 1;
+}
+
+message SuperUsersResponse {
+    repeated SuperUser super_users = 1;
+    int32 count = 2;
+}
